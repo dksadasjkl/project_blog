@@ -28,7 +28,6 @@ public class AuthController {
 
     @PostMapping("/sign-in")
     public ResponseEntity<?> signin(@RequestBody AuthSignupRequestDto authSignupRequestDto) {
-        System.out.println(authSignupRequestDto);
         authService.signup(authSignupRequestDto);
         return ResponseEntity.created(null).body(true);
     }
