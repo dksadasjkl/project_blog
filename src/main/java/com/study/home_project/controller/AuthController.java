@@ -21,7 +21,6 @@ public class AuthController {
     // 회원가입
     @PostMapping("/sign-up")
     public ResponseEntity<?> signup(@Valid @RequestBody AuthSignupRequestDto authSignupRequestDto) {
-        System.out.println(authSignupRequestDto);
         authService.signup(authSignupRequestDto);
         return ResponseEntity.created(null).body(true);
     }
