@@ -9,4 +9,8 @@ public class AuthService {
     public void signup(AuthSignupRequestDto authSignupRequestDto) {
 
     }
+
+    public void signin(AuthSignupRequestDto authSignupRequestDto) {
+
+    }
 }
