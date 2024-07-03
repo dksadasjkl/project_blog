@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     public void signup(AuthSignupRequestDto authSignupRequestDto) {
-
+        System.out.println(authSignupRequestDto);
     }
 
     public void signin(AuthSignupRequestDto authSignupRequestDto) {
