@@ -11,6 +11,6 @@ public class AuthService {
     }
 
     public void signin(AuthSignupRequestDto authSignupRequestDto) {
-
+        System.out.println(authSignupRequestDto);
     }
 }
