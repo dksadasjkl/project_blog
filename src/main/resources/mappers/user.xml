@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.home_project.repository.UserMapper">
+    <insert id="saveUser"
+            parameterType="com.study.home_project.entity.User"
+            keyProperty="userId"
+            useGeneratedKeys="true"
+    >
+        insert into
+        user_tb
+        values
+        (0, #{username}, #{password}, #{name}, #{address}, #{detailAddress}, #{telNumber}, #{nickname}, #{email}, #{profileImageUrl}, now(), now())
+    </insert>
+</mapper>
