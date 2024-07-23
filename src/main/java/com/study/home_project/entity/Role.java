@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-// 권한
 public class Role {
     private int roleId;
     private String roleName;
