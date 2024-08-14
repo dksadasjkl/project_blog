@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-// 권한
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
