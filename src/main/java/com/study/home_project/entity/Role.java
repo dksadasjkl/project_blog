@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
-// 수정
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
