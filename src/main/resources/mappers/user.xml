@@ -11,6 +11,6 @@
         insert into
         user_tb
         values
-        (0, #{username}, #{password}, #{name}, #{profileImg}, now(), now())
+        (0, #{username}, #{password}, #{name}, #{telNumber}, #{nickname}, #{profileImageUrl}, now(), now())
     </insert>
 </mapper>

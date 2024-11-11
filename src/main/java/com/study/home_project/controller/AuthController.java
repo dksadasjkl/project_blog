@@ -18,7 +18,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    // 회원가입
+
     @PostMapping("/sign-up")
     public ResponseEntity<?> signup(@Valid @RequestBody AuthSignupRequestDto authSignupRequestDto) {
         authService.signup(authSignupRequestDto);
