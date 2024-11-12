@@ -1,54 +1,64 @@
 package com.study.home_project.filter;
 
 import com.study.home_project.jwt.JwtProvider;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
+import io.jsonwebtoken.Claims;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 @Component
-@RequiredArgsConstructor
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends GenericFilter {
 
-    private final JwtProvider jwtProvider;
+    @Autowired
+    private JwtProvider jwtProvider;
+
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = parseBearerToken(request);
-        if(token == null) {
-            filterChain.doFilter(request, response);
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-            return;
+        List<String> antMatchers = List.of(
+                "/auth"
+        );
+
+        String url = request.getRequestURI();
+        request.setAttribute("isPermitAll", false);
+
+        for(String antMatcher : antMatchers) {
+            if (url.startsWith(antMatcher)) {
+                request.setAttribute("isPermitAll", true);
+            }
         }
+        Boolean isPermitAll = (Boolean) request.getAttribute("isPermitAll");
 
+        if(!isPermitAll) {
+            String accessToken = request.getHeader("Authorization");
+            String removeBearerToken = jwtProvider.removeBearer(accessToken);
+            Claims claims = null;
+            try {
+                claims = jwtProvider.getClaims(removeBearerToken);
+            } catch (Exception e) {
+                response.sendError(HttpStatus.UNAUTHORIZED.value());
+                return;
+            }
+            Authentication authentication = jwtProvider.getAuthentication(claims);
 
-        String email = jwtProvider.validate(token);
-        if (email == null) {
-            filterChain.doFilter(request, response);
-            return;
+            if(authentication == null) {
+                response.sendError(HttpStatus.UNAUTHORIZED.value());
+                return;
+            }
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
-        AbstractAuthenticationToken abstractAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(email, null, AuthorityUtils.NO_AUTHORITIES);
-    }
-
-    private String parseBearerToken(HttpServletRequest request) {
-        String authorization = request.getHeader("Authorization");
-        boolean hasAuthorization = StringUtils.hasText(authorization);
-        if(!hasAuthorization) return null;
-        boolean isBearer = authorization.startsWith("Bearer ");
-        if(!isBearer) return null;
-        String token = authorization.substring("Bearer ".length());
-        return token;
+        filterChain.doFilter(request, response);
     }
 }

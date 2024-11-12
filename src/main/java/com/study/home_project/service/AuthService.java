@@ -6,6 +6,7 @@ import com.study.home_project.repository.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthService {
@@ -15,9 +16,16 @@ public class AuthService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Transactional(rollbackFor = Exception.class)
     public void signup(AuthSignupRequestDto authSignupRequestDto) {
+        int successCount = 0;
         User user = authSignupRequestDto.toEntity(passwordEncoder);
-        userMapper.saveUser(user);
+        successCount += userMapper.saveUser(user);
+        successCount += userMapper.saveRole(user.getUserId(), 1);
+
+        if(successCount < 2) {
+            throw new RuntimeException("데이터 저장 오류");
+        }
     }
 
     public void signin(AuthSignupRequestDto authSignupRequestDto) {
