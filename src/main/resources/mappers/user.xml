@@ -62,28 +62,25 @@
             resultMap="UserResultMap"
     >
         select
-        ut.user_id,
-        ut.user_username,
-        ut.user_password,
-        ut.user_name,
-        ut.user_address,
-        ut.user_detail_address,
-        ut.user_tel_number,
-        ut.user_nickname,
-        ut.user_email,
-        ut.user_profile_image_url,
-        ut.create_date,
-        ut.update_date,
-        rrt.role_register_id,
-        rrt.role_id,
-        rt.role_name,
-        rt.role_name_kor
+            ut.user_id,
+            ut.user_username,
+            ut.user_password,
+            ut.user_name,
+            ut.user_tel_number,
+            ut.user_nickname,
+            ut.user_profile_image_url,
+            ut.create_date,
+            ut.update_date,
+            rrt.role_register_id,
+            rrt.role_id,
+            rt.role_name,
+            rt.role_name_kor
         from
         user_tb ut
-        left outer join role_register_tb rrt on(rrt.user_id = ut.user_id)
-        left outer join role_tb rt on(rt.role_id = rrt.role_id)
+            left outer join role_register_tb rrt on(rrt.user_id = ut.user_id)
+            left outer join role_tb rt on(rt.role_id = rrt.role_id)
         where
-        ut.user_username = #{username}
+            ut.user_username = #{username}
     </select>
 
 </mapper>
