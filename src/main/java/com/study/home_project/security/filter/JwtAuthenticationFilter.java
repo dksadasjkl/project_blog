@@ -1,4 +1,4 @@
-package com.study.home_project.filter;
+package com.study.home_project.security.filter;
 
 import com.study.home_project.jwt.JwtProvider;
 import io.jsonwebtoken.Claims;

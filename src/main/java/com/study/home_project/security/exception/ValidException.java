@@ -1,4 +1,4 @@
-package com.study.home_project.exception;
+package com.study.home_project.security.exception;
 
 import lombok.Getter;
 

@@ -2,6 +2,7 @@ package com.study.home_project.service;
 
 import com.study.home_project.dto.AuthSigninRequestDto;
 import com.study.home_project.dto.AuthSignupRequestDto;
+import com.study.home_project.dto.OAuth2SignupRequestDto;
 import com.study.home_project.entity.User;
 import com.study.home_project.jwt.JwtProvider;
 import com.study.home_project.repository.UserMapper;
@@ -21,7 +22,8 @@ public class AuthService {
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private JwtProvider jwtProvider;
-
+    
+    // 회원가입 기능
     @Transactional(rollbackFor = Exception.class)
     public void signup(AuthSignupRequestDto authSignupRequestDto) {
         int successCount = 0;
@@ -33,7 +35,9 @@ public class AuthService {
             throw new RuntimeException("데이터 저장 오류");
         }
     }
-
+    
+    
+    // 로그인 기능
     public String signin(AuthSigninRequestDto authSigninRequestDto) {
         User user = userMapper.findUserByUsername(authSigninRequestDto.getUsername());
         System.out.println(user);
@@ -46,4 +50,21 @@ public class AuthService {
 
         return jwtProvider.generateToken(user);
     }
+    
+    // 소셜 회원가입 기능
+    @Transactional(rollbackFor = Exception.class)
+    public void oAuth2Signup(OAuth2SignupRequestDto oAuth2SignupRequestDto) {
+        int successCount = 0;
+        User user = oAuth2SignupRequestDto.toEntity(passwordEncoder);
+        successCount += userMapper.saveUser(user);
+        successCount += userMapper.saveRole(user.getUserId(), 1);
+        System.out.println(user.getUserId());
+        successCount += userMapper.saveOAuth2(oAuth2SignupRequestDto.toOAuth2(user.getUserId()));
+
+        if(successCount < 3) {
+            throw new RuntimeException("데이터 저장 오류");
+        }
+
+    }
+
 }
