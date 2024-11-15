@@ -40,7 +40,6 @@ public class AuthService {
     // 로그인 기능
     public String signin(AuthSigninRequestDto authSigninRequestDto) {
         User user = userMapper.findUserByUsername(authSigninRequestDto.getUsername());
-        System.out.println(user);
         if(user == null) {
             throw new UsernameNotFoundException("사용자 정보를 확인하세요");
         }
@@ -58,7 +57,6 @@ public class AuthService {
         User user = oAuth2SignupRequestDto.toEntity(passwordEncoder);
         successCount += userMapper.saveUser(user);
         successCount += userMapper.saveRole(user.getUserId(), 1);
-        System.out.println(user.getUserId());
         successCount += userMapper.saveOAuth2(oAuth2SignupRequestDto.toOAuth2(user.getUserId()));
 
         if(successCount < 3) {

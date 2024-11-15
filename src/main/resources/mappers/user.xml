@@ -138,4 +138,38 @@
             ut.user_nickname = #{nickname}
     </select>
 
+    <update id="editPassword"
+            parameterType="com.study.home_project.entity.User">
+        update
+        user_tb
+        set
+        user_password = #{password},
+        update_date = now()
+        where
+        user_id =  #{userId}
+    </update>
+
+<!--    <update id="editNickname"-->
+<!--            parameterType="com.study.home_project.entity.User">-->
+<!--        update-->
+<!--        user_tb-->
+<!--        set-->
+<!--        user_nickname = #{nickname},-->
+<!--        update_date = now()-->
+<!--        where-->
+<!--        user_id =  #{userId}-->
+<!--    </update>-->
+
+<!--    <update id="updateProfileImageUrl"-->
+<!--            parameterType="com.study.home_project.entity.User">-->
+<!--        update user_tb-->
+<!--        <trim prefix="set" suffixOverrides=",">-->
+<!--            <if test="profileImageUrl != null and profileImageUrl != ''">-->
+<!--                user_profile_image_url = #{profileImageUrl},-->
+<!--            </if>-->
+<!--            update_date = now()-->
+<!--        </trim>-->
+<!--        where user_id = #{userId}-->
+<!--    </update>-->
+
 </mapper>

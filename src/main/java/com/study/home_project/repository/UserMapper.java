@@ -14,5 +14,8 @@ public interface UserMapper {
     public User findUserByUsername(String username);
     public User findUserByOAuth2name(String oAuth2name);
     public User findUserByNickname(String nickname);
+    public int editPassword(User user);
+    public int editNickname(User user);
+    public int updateProfileImageUrl(User user);
 
 }
