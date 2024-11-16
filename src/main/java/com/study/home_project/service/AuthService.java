@@ -49,8 +49,7 @@ public class AuthService {
 
         return jwtProvider.generateToken(user);
     }
-    
-    // 소셜 회원가입 기능
+
     @Transactional(rollbackFor = Exception.class)
     public void oAuth2Signup(OAuth2SignupRequestDto oAuth2SignupRequestDto) {
         int successCount = 0;
