@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.home_project.repository.AdminMapper">
+
+    <resultMap id="RoleResultMap" type="com.study.home_project.entity.Role">
+        <id property="roleId" column="user_id" />
+        <result property="roleName" column="role_name" />
+        <result property="roleNameKor" column="role_name_kor" />
+    </resultMap>
+
+    <resultMap id="RoleAdminRegisterResultMap" type="com.study.home_project.entity.AdminRoleRegister">
+        <id property="roleAdminRegisterId" column="role_admin_register_id" />
+        <result property="adminId" column="admin_id" />
+        <result property="roleId" column="role_id" />
+        <association property="role" resultMap="RoleResultMap" />
+    </resultMap>
+
+    <resultMap id="OAuth2ResultMap" type="com.study.home_project.entity.OAuth2">
+        <id property="oAuth2Id" column="oauth2_id" />
+        <result property="oAuth2Name" column="oauth2_name" />
+        <result property="adminId" column="user_id" />
+        <result property="providerName" column="provider_name" />
+    </resultMap>
+
+    <resultMap id="AdminResultMap" type="com.study.home_project.entity.Admin">
+        <id property="adminId" column="admin_id" />
+        <result property="adminName" column="admin_name" />
+        <result property="adminPassword" column="admin_password" />
+        <result property="tradeName" column="trade_name" />
+        <result property="email" column="email" />
+        <result property="feedbackUse" column="feedback_use" />
+        <result property="playUse" column="play_use" />
+        <result property="imgUrl" column="img_url" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+        <collection property="adminRoleRegisters" javaType="list" resultMap="RoleAdminRegisterResultMap" />
+        <collection property="oAuth2s" javaType="list" resultMap="OAuth2ResultMap" />
+    </resultMap>
+
+    <resultMap id="RoleRegisterResultMap" type="com.study.home_project.entity.UserRoleRegister">
+        <id property="roleRegisterId" column="role_register_id" />
+        <result property="userId" column="user_id" />
+        <result property="roleId" column="role_id" />
+        <association property="role" resultMap="RoleResultMap" />
+    </resultMap>
+
+    <resultMap id="UserResultMap" type="com.study.home_project.entity.User">
+        <id property="userId" column="user_id" />
+        <result property="roleId" column="role_id" />
+        <result property="phoneNumber" column="phone_number" />
+        <result property="createDate" column="create_number" />
+        <result property="updateDate" column="update_number" />
+        <collection property="roleRegisters" javaType="list" resultMap="RoleRegisterResultMap" />
+    </resultMap>
+
+    <resultMap id="UserAuthResultMap" type="com.study.home_project.entity.User">
+        <id property="userId" column="user_id" />
+        <result property="roleNameKor" column="role_name_kor" />
+        <result property="phoneNumber" column="phone_number" />
+        <result property="totalPoint" column="total_point" />
+        <result property="createDate" column="create_date" />
+        <result property="updateDate" column="update_date" />
+    </resultMap>
+
+    <insert id="saveAdmin"
+            parameterType="com.study.home_project.entity.Admin"
+            keyProperty="adminId"
+            useGeneratedKeys="true"
+    >
+        insert into admin_tb
+        values(0, #{adminName}, #{adminPassword}, #{tradeName}, #{email}, 0, 0, "https://firebasestorage.googleapis.com/v0/b/gumeonggage-e7859.appspot.com/o/admin%2Fimg%2Flogo.jpg?alt=media&amp;token=9a43176d-8e67-4be4-add1-97270c626fcc", now(), now())
+    </insert>
+
+    <insert id="saveRole" parameterType="integer">
+        insert into role_admin_register_tb
+        values(0, #{adminId}, 1, now(), now())
+    </insert>
+
+    <select
+            id="findAdminByUsername"
+            parameterType="string"
+            resultMap="AdminResultMap"
+    >
+        select
+            at.admin_id,
+            at.admin_name,
+            at.admin_password,
+            at.trade_name,
+            at.email,
+            at.feedback_use,
+            at.play_use,
+            at.img_url,
+            at.create_date,
+            at.update_date,
+            rart.role_admin_register_id,
+            rart.role_id,
+            rt.role_name,
+            rt.role_name_kor
+        from
+            admin_tb at
+            left outer join role_admin_register_tb rart on(rart.admin_id = at.admin_id)
+            left outer join role_tb rt on(rt.role_id = rart.role_id)
+        where
+            admin_name = #{adminName}
+    </select>
+
+    <update id="modifyPassword" parameterType="com.study.home_project.entity.Admin">
+        update
+            admin_tb
+        set
+            admin_password = #{adminPassword},
+            update_date = now()
+        where
+            admin_id = #{adminId}
+    </update>
+
+    <select id="getUserAuth" resultMap="UserAuthResultMap">
+        select
+            ut.user_id,
+            rt.role_name_kor,
+            ut.phone_number,
+            sum(point) as total_point,
+            ut.create_date,
+            ut.update_date
+        from
+            user_tb ut
+            left outer join role_tb rt on(rt.role_id = ut.role_id)
+            left outer join point_tb pt on(pt.user_id = ut.user_id)
+        group by
+            user_id
+    </select>
+
+    <insert id="saveOAuth2" parameterType="com.study.home_project.entity.OAuth2">
+        insert into oauth2_tb
+        values(0, #{oAuth2Name}, #{adminId}, #{providerName}, now(), now())
+    </insert>
+
+    <select id="findAdminByOAuth2name" resultMap="AdminResultMap">
+        select
+            at.admin_id,
+            at.admin_name,
+            at.admin_password,
+            at.trade_name,
+            at.email,
+            at.create_date,
+            at.update_date,
+            rart.role_admin_register_id,
+            rart.role_id,
+            rt.role_name,
+            rt.role_name_kor,
+            oat.oauth2_id,
+            oat.oauth2_name,
+            oat.provider_name
+        from
+        admin_tb at
+            left outer join role_admin_register_tb rart on(rart.admin_id = at.admin_id)
+            left outer join role_tb rt on(rt.role_id = rart.role_id)
+            left outer join oauth2_tb oat on(oat.admin_id = at.admin_id)
+        where
+            oat.oauth2_name = #{oAuth2Name}
+    </select>
+
+    <update id="updateLogo" parameterType="com.study.home_project.entity.Admin">
+        update
+            admin_tb
+        set
+            img_url = #{imgUrl},
+            update_date = now()
+        where
+            admin_id = #{adminId}
+    </update>
+
+    <update id="storeSettingChange" parameterType="com.study.home_project.entity.Admin">
+        update
+            admin_tb
+        set
+            feedback_use = #{feedbackUse},
+            play_use = #{playUse}
+        where
+            admin_id = #{adminId}
+    </update>
+
+    <update id="modifyTradeName" parameterType="com.study.home_project.entity.Admin">
+        update
+            admin_tb
+        set
+            trade_name = #{tradeName},
+            update_date = now()
+        where
+            admin_id = #{adminId}
+    </update>
+
+</mapper>

@@ -80,14 +80,14 @@ public class ValidAop {
                     authSignupRequestDto = (AuthSignupRequestDto) arg;
                 }
             }
-            if(userMapper.findUserByUsername(authSignupRequestDto.getUsername()) != null){
-                ObjectError objectError = new FieldError("username", "username", "이미 존재하는 사용자이름입니다.");
-                bindingResult.addError(objectError);
-            }
-            if(userMapper.findUserByNickname(authSignupRequestDto.getNickname()) != null) {
-                ObjectError objectError = new FieldError("nickname", "nickname", "이미 존재하는 닉네임입니다.");
-                bindingResult.addError(objectError);
-            }
+//            if(userMapper.findUserByUsername(authSignupRequestDto.getUsername()) != null){
+//                ObjectError objectError = new FieldError("username", "username", "이미 존재하는 사용자이름입니다.");
+//                bindingResult.addError(objectError);
+//            }
+//            if(userMapper.findUserByNickname(authSignupRequestDto.getNickname()) != null) {
+//                ObjectError objectError = new FieldError("nickname", "nickname", "이미 존재하는 닉네임입니다.");
+//                bindingResult.addError(objectError);
+//            }
         }
 
         if(methodName.equals("oAuth2Signup")) {
@@ -101,10 +101,10 @@ public class ValidAop {
                 ObjectError objectError = new FieldError("username", "username", "이미 존재하는 사용자이름입니다.");
                 bindingResult.addError(objectError);
             }
-            if(userMapper.findUserByNickname(oAuth2SignupRequestDto.getNickname()) != null) {
-                ObjectError objectError = new FieldError("nickname", "nickname", "이미 존재하는 닉네임입니다.");
-                bindingResult.addError(objectError);
-            }
+//            if(userMapper.findUserByNickname(oAuth2SignupRequestDto.getNickname()) != null) {
+//                ObjectError objectError = new FieldError("nickname", "nickname", "이미 존재하는 닉네임입니다.");
+//                bindingResult.addError(objectError);
+//            }
             if(userMapper.findUserByOAuth2name(oAuth2SignupRequestDto.getOauth2Name()) != null) {
                 ObjectError objectError = new FieldError("message", "error", "로그인한 기록이 있습니다.");
                 bindingResult.addError(objectError);

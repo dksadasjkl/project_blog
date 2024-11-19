@@ -28,21 +28,21 @@ public class AccountService {
         return userMapper.findUserByUsername(authentication.getName());
     }
 
-    public void editPassword(AccountEditPasswordRequestDto accountEditPasswordRequestDto) {
-        User user = getCurrentUser();
-
-        if(!passwordEncoder.matches(accountEditPasswordRequestDto.getOldPassword(), user.getPassword())) {
-            throw new ValidException(Map.of("oldPassword", "비밀번호 인증에 실패하였습니다. 다시 입력하세요"));
-        }
-        if(!accountEditPasswordRequestDto.getNewPassword().equals(accountEditPasswordRequestDto.getNewPasswordCheck())) {
-            throw new ValidException(Map.of("newPasswordCheck", "새로운 비밀번호가 서로 일치하지 않습니다. 다시 입력하세요"));
-        }
-        if(passwordEncoder.matches(accountEditPasswordRequestDto.getNewPassword(), user.getPassword())) {
-            throw new ValidException(Map.of("newPasswordCheck", "이전 비밀번호와 동일한 비밀번호는 사용하실 수 없습니다. 다시 입력하세요"));
-        }
-        user.setPassword(passwordEncoder.encode(accountEditPasswordRequestDto.getNewPassword()));
-        userMapper.editPassword(user);
-    }
+//    public void editPassword(AccountEditPasswordRequestDto accountEditPasswordRequestDto) {
+//        User user = getCurrentUser();
+//
+//        if(!passwordEncoder.matches(accountEditPasswordRequestDto.getOldPassword(), user.getPassword())) {
+//            throw new ValidException(Map.of("oldPassword", "비밀번호 인증에 실패하였습니다. 다시 입력하세요"));
+//        }
+//        if(!accountEditPasswordRequestDto.getNewPassword().equals(accountEditPasswordRequestDto.getNewPasswordCheck())) {
+//            throw new ValidException(Map.of("newPasswordCheck", "새로운 비밀번호가 서로 일치하지 않습니다. 다시 입력하세요"));
+//        }
+//        if(passwordEncoder.matches(accountEditPasswordRequestDto.getNewPassword(), user.getPassword())) {
+//            throw new ValidException(Map.of("newPasswordCheck", "이전 비밀번호와 동일한 비밀번호는 사용하실 수 없습니다. 다시 입력하세요"));
+//        }
+//        user.setPassword(passwordEncoder.encode(accountEditPasswordRequestDto.getNewPassword()));
+//        userMapper.editPassword(user);
+//    }
 
 //    @Transactional(rollbackFor = Exception.class)
 //    public void editNicknameAndProfileImageUrl(AccountEditNicknameRequestDto accountEditNicknameRequestDto) {

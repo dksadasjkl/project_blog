@@ -16,33 +16,31 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class User {
     private int userId;
-    private String username;
-    private String password;
-    private String name;
-    private String telNumber;
-    private String nickname;
-    private String profileImageUrl;
+    private int roleId;
+    private String roleNameKor;
+    private String phoneNumber;
+    private int totalPoint;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 
     private List<RoleRegister> roleRegisters;
 
-    public List<SimpleGrantedAuthority> getAuthorities() {
-        return roleRegisters.stream()
-                .map(roleRegister ->
-                        new SimpleGrantedAuthority(roleRegister.getRole().getRoleName()))
-                .collect(Collectors.toList());
-    }
+//    public List<SimpleGrantedAuthority> getAuthorities() {
+//        return roleRegisters.stream()
+//                .map(roleRegister ->
+//                        new SimpleGrantedAuthority(roleRegister.getRole().getRoleName()))
+//                .collect(Collectors.toList());
+//    }
 
-    public PrincipalUser toPrincipalUser() {
-        return PrincipalUser.builder()
-                .userId(userId)
-                .username(username)
-                .name(name)
-                .telNumber(telNumber)
-                .nickname(nickname)
-                .profileImageUrl(profileImageUrl)
-                .authorities(getAuthorities())
-                .build();
-    }
+//    public PrincipalUser toPrincipalUser() {
+//        return PrincipalUser.builder()
+//                .userId(userId)
+//                .username(username)
+//                .name(name)
+//                .telNumber(telNumber)
+//                .nickname(nickname)
+//                .profileImageUrl(profileImageUrl)
+//                .authorities(getAuthorities())
+//                .build();
+//    }
 }

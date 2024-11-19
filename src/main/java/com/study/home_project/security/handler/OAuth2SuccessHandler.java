@@ -26,17 +26,17 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String oAuth2name = authentication.getName();
-        User user = userMapper.findUserByOAuth2name(oAuth2name);
-
-        if (user == null) {
-            DefaultOAuth2User oAuth2User = (DefaultOAuth2User) authentication.getPrincipal();
-            String providerName = oAuth2User.getAttribute("provider").toString();
-            response.sendRedirect("http://" + clientAddress + "/auth/oauth2/sign-up?name=" + oAuth2name + "&provider=" + providerName);
-            return;
-        }
-
-        String accessToken = jwtProvider.generateToken(user);
-        response.sendRedirect("http://" + clientAddress + "/auth/oauth2/sign-in?accessToken=" + accessToken);
+//        String oAuth2name = authentication.getName();
+//        User user = userMapper.findUserByOAuth2name(oAuth2name);
+//
+//        if (user == null) {
+//            DefaultOAuth2User oAuth2User = (DefaultOAuth2User) authentication.getPrincipal();
+//            String providerName = oAuth2User.getAttribute("provider").toString();
+//            response.sendRedirect("http://" + clientAddress + "/auth/oauth2/sign-up?name=" + oAuth2name + "&provider=" + providerName);
+//            return;
+//        }
+//
+//        String accessToken = jwtProvider.generateToken(user);
+//        response.sendRedirect("http://" + clientAddress + "/auth/oauth2/sign-in?accessToken=" + accessToken);
     }
 }

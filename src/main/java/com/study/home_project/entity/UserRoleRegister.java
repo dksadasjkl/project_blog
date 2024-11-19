@@ -11,11 +11,12 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OAuth2 {
-    private int oAuth2Id;
-    private int adminId;
-    private String oAuth2Name;
-    private String providerName;
+public class UserRoleRegister {
+    private int roleRegisterId;
+    private int userId;
+    private int roleId;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
+
+    private Role role;
 }

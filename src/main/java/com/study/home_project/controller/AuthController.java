@@ -19,27 +19,28 @@ public class AuthController {
     private AuthService authService;
 
     
-    // 회원 가입 기능
-    @ValidAspect
-    @PostMapping("/sign-up")
-    public ResponseEntity<?> signup(@Valid @RequestBody AuthSignupRequestDto authSignupRequestDto, BindingResult bindingResult) {
-        authService.signup(authSignupRequestDto);
-        return ResponseEntity.created(null).body(true);
-    }
+    // 회원 가입 기능(전화번호 가입)
+//    @ValidAspect
+//    @PostMapping("/sign-up")
+//    public ResponseEntity<?> signup(@Valid @RequestBody AuthSignupRequestDto authSignupRequestDto, BindingResult bindingResult) {
+//        authService.signup(authSignupRequestDto);
+//        return ResponseEntity.created(null).body(true);
+//    }
+
 
     // 로그인 기능
-    @PostMapping("/sign-in")
-    public ResponseEntity<?> signin(@RequestBody AuthSigninRequestDto authSigninRequestDto) {
-        return ResponseEntity.created(null).body(authService.signin(authSigninRequestDto));
-    }
+//    @PostMapping("/sign-in")
+//    public ResponseEntity<?> signin(@RequestBody AuthSigninRequestDto authSigninRequestDto) {
+//        return ResponseEntity.created(null).body(authService.signin(authSigninRequestDto));
+//    }
 
-    // 소설 회원가입 기능
-    @ValidAspect
-    @PostMapping("/oauth2/sign-up")
-    public ResponseEntity<?> oAuth2Signup(@Valid @RequestBody OAuth2SignupRequestDto oAuth2SignupRequestDto, BindingResult bindingResult) {
-        authService.oAuth2Signup(oAuth2SignupRequestDto);
-        return ResponseEntity.created(null).body(true);
-    }
+//    // 소설 회원가입 기능
+//    @ValidAspect
+//    @PostMapping("/oauth2/sign-up")
+//    public ResponseEntity<?> oAuth2Signup(@Valid @RequestBody OAuth2SignupRequestDto oAuth2SignupRequestDto, BindingResult bindingResult) {
+//        authService.oAuth2Signup(oAuth2SignupRequestDto);
+//        return ResponseEntity.created(null).body(true);
+//    }
 
     @ValidAspect
     @PostMapping("/username-check")

@@ -29,12 +29,12 @@ public class AccountController {
         return ResponseEntity.ok(principalUser);
     }
     
-    @ValidAspect
-    @PutMapping("/edit/password")
-    public ResponseEntity<?> editPassword (@Valid @RequestBody AccountEditPasswordRequestDto accountEditPasswordRequestDto, BindingResult bindingResult) {
-        accountService.editPassword(accountEditPasswordRequestDto);
-        return ResponseEntity.ok(true);
-    }
+//    @ValidAspect
+//    @PutMapping("/edit/password")
+//    public ResponseEntity<?> editPassword (@Valid @RequestBody AccountEditPasswordRequestDto accountEditPasswordRequestDto, BindingResult bindingResult) {
+//        accountService.editPassword(accountEditPasswordRequestDto);
+//        return ResponseEntity.ok(true);
+//    }
 
 
 //    @ValidAspect

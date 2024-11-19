@@ -1,7 +1,9 @@
 package com.study.home_project.jwt;
 
+import com.study.home_project.entity.Admin;
 import com.study.home_project.entity.PrincipalUser;
 import com.study.home_project.entity.User;
+import com.study.home_project.repository.AdminMapper;
 import com.study.home_project.repository.UserMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -25,20 +27,22 @@ import java.util.Date;
 public class JwtProvider {
 
     private final Key key;
-    public UserMapper userMapper;
+    private AdminMapper adminMapper;
 
-    public JwtProvider(@Value("${jwt.secret}") String secret, @Autowired UserMapper userMapper)  {
+    public JwtProvider(
+            @Value("${jwt.secret}") String secret,
+            @Autowired AdminMapper adminMapper) {
         key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
-        this.userMapper = userMapper;
+        this.adminMapper = adminMapper;
     }
 
-    public String generateToken(User user) {
-        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+    public String generateToken(Admin admin) {
+        Collection<? extends GrantedAuthority> authorities = admin.getAuthorities();
         Date expireDate = new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 24));
 
         String accessToken = Jwts.builder()
-                .claim("userId", user.getUserId())
-                .claim("username", user.getUsername())
+                .claim("userId", admin.getAdminId())
+                .claim("username", admin.getAdminName())
                 .claim("authorities", authorities)
                 .setExpiration(expireDate)
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -58,18 +62,27 @@ public class JwtProvider {
         claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
-                .parseClaimsJws(token)
+                .parseClaimsJws(token) // 토큰을 클래임으로 변환하는 작업
                 .getBody();
         return claims;
     }
 
     public Authentication getAuthentication(Claims claims) {
         String username = claims.get("username").toString();
-        User user = userMapper.findUserByUsername(username);
-        if(user == null) {
+        Admin admin = adminMapper.findAdminByUsername(username);
+        if(admin == null) {
             return null;
         }
-        PrincipalUser principalUser = user.toPrincipalUser();
+        PrincipalUser principalUser = admin.toPrincipalUser();
         return new UsernamePasswordAuthenticationToken(principalUser, principalUser.getPassword(), principalUser.getAuthorities());
     }
+
+//    public String generateAuthMailToken(String toMailAddress) {
+//        Date exprireDate = new Date(new Date().getTime() + (1000 * 60 * 5));
+//        return Jwts.builder()
+//                .claim("toMailAddress",toMailAddress)
+//                .setExpiration(exprireDate)
+//                .signWith(key, SignatureAlgorithm.HS256)
+//                .compact();
+//    }
 }
