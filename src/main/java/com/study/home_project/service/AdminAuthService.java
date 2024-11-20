@@ -2,7 +2,10 @@ package com.study.home_project.service;
 
 import com.study.home_project.dto.AdminSigninRequestDto;
 import com.study.home_project.dto.AdminSignupRequestDto;
+import com.study.home_project.dto.OAuth2MergeRequestDto;
+import com.study.home_project.dto.OAuth2SignupRequestDto;
 import com.study.home_project.entity.Admin;
+import com.study.home_project.entity.OAuth2;
 import com.study.home_project.jwt.JwtProvider;
 import com.study.home_project.repository.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,37 @@ public class AdminAuthService {
             throw new BadCredentialsException("사용자 정보를 확인하세요");
         }
         return jwtProvider.generateToken(admin);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void oAuth2Signup(OAuth2SignupRequestDto oAuth2SignupRequestDto) {
+        int successCount = 0;
+        Admin admin = oAuth2SignupRequestDto.toEntity(passwordEncoder);
+        System.out.println(oAuth2SignupRequestDto);
+        successCount += adminMapper.saveAdmin(admin);
+        successCount += adminMapper.saveRole(admin.getAdminId(),1);
+        successCount += adminMapper.saveOAuth2(oAuth2SignupRequestDto.toOAuth2(admin.getAdminId()));
+
+        if(successCount < 3) {
+            throw new RuntimeException("데이터 저장 오류");
+        }
+    }
+
+    public void oAuth2Merge(OAuth2MergeRequestDto oAuth2MergeRequestDto) {
+        Admin admin = adminMapper.findAdminByUsername(oAuth2MergeRequestDto.getUsername());
+
+        if(admin == null) {
+            throw new UsernameNotFoundException("사용자 정보를 확인하세요");
+        }
+        if(!passwordEncoder.matches(oAuth2MergeRequestDto.getPassword(),admin.getAdminPassword())) {
+            throw new BadCredentialsException("사용자 정보를 확인하세요");
+        }
+        OAuth2 oAuth2 = OAuth2.builder()
+                .oAuth2Name(oAuth2MergeRequestDto.getOauth2Name())
+                .adminId(admin.getAdminId())
+                .providerName(oAuth2MergeRequestDto.getProviderName())
+                .build();
+        adminMapper.saveOAuth2(oAuth2);
     }
 
 }

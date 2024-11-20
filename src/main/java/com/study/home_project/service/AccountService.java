@@ -23,10 +23,10 @@ public class AccountService {
     private BCryptPasswordEncoder passwordEncoder;
 
 
-    private User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return userMapper.findUserByUsername(authentication.getName());
-    }
+//    private User getCurrentUser() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return userMapper.findUserByUsername(authentication.getName());
+//    }
 
 //    public void editPassword(AccountEditPasswordRequestDto accountEditPasswordRequestDto) {
 //        User user = getCurrentUser();

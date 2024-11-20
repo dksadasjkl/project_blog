@@ -41,7 +41,7 @@ public class Admin {
         return PrincipalUser.builder()
                 .userId(adminId)
                 .username(adminName)
-                .tradename(tradeName)
+                .tradeName(tradeName)
                 .email(email)
                 .feedbackUse(feedbackUse)
                 .playUse(playUse)

@@ -14,7 +14,7 @@ import java.util.List;
 public class PrincipalUser implements UserDetails {
     private int userId;
     private String username;
-    private String tradename;
+    private String tradeName;
     private String email;
     private int feedbackUse;
     private int playUse;
