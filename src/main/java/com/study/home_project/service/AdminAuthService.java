@@ -53,9 +53,8 @@ public class AdminAuthService {
     public void oAuth2Signup(OAuth2SignupRequestDto oAuth2SignupRequestDto) {
         int successCount = 0;
         Admin admin = oAuth2SignupRequestDto.toEntity(passwordEncoder);
-        System.out.println(oAuth2SignupRequestDto);
         successCount += adminMapper.saveAdmin(admin);
-        successCount += adminMapper.saveRole(admin.getAdminId(),1);
+        successCount += adminMapper.saveRole(admin.getAdminId(),3);
         successCount += adminMapper.saveOAuth2(oAuth2SignupRequestDto.toOAuth2(admin.getAdminId()));
 
         if(successCount < 3) {

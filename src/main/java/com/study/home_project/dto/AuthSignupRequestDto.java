@@ -12,7 +12,6 @@ public class AuthSignupRequestDto {
     @NotBlank(message = "전화번호를 입력하세요")
     private String phoneNumber;
 
-
     public User toEntity() {
         return User.builder()
                 .phoneNumber(phoneNumber)

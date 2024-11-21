@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.Map;
 
 @Service
-public class OAuth2PrincipalUserService implements OAuth2UserService  {
+public class    OAuth2PrincipalUserService implements OAuth2UserService  {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {

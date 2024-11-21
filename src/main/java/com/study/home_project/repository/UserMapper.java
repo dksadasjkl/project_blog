@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UserMapper {
     public int saveUser(User user);
-    public int deleteUser(User user);
+    public int deleteUser(int userId);
 
 }
