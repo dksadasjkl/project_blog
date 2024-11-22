@@ -1,9 +1,9 @@
 package com.study.home_project.aop;
 
-import com.study.home_project.dto.*;
+import com.study.home_project.dto.request.AdminSignupRequestDto;
+import com.study.home_project.dto.request.OAuth2SignupRequestDto;
 import com.study.home_project.repository.AdminMapper;
 import com.study.home_project.security.exception.ValidException;
-import com.study.home_project.repository.UserMapper;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

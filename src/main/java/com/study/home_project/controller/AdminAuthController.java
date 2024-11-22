@@ -1,10 +1,10 @@
 package com.study.home_project.controller;
 
 import com.study.home_project.annotation.ValidAspect;
-import com.study.home_project.dto.AdminSigninRequestDto;
-import com.study.home_project.dto.AdminSignupRequestDto;
-import com.study.home_project.dto.OAuth2MergeRequestDto;
-import com.study.home_project.dto.OAuth2SignupRequestDto;
+import com.study.home_project.dto.request.AdminSigninRequestDto;
+import com.study.home_project.dto.request.AdminSignupRequestDto;
+import com.study.home_project.dto.request.OAuth2MergeRequestDto;
+import com.study.home_project.dto.request.OAuth2SignupRequestDto;
 import com.study.home_project.service.AdminAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

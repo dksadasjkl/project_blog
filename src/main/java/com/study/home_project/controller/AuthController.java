@@ -1,7 +1,6 @@
 package com.study.home_project.controller;
 
-import com.study.home_project.annotation.ValidAspect;
-import com.study.home_project.dto.*;
+import com.study.home_project.dto.request.AuthSignupRequestDto;
 import com.study.home_project.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")

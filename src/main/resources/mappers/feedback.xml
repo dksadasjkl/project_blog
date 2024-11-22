@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.home_project.repository.FeedbackMapper">
+    <resultMap id="FeedbackResultMap" type="com.study.home_project.entity.Feedback">
+        <id property="feedbackId" column="feedback_id" />
+        <result property="answer1" column="answer1" />
+        <result property="answer2" column="answer2" />
+        <result property="answer3" column="answer3" />
+        <result property="createDate" column="create_date" />
+        <result property="q1a1" column="q1a1" />
+        <result property="q1a2" column="q1a2" />
+        <result property="q1a3" column="q1a3" />
+        <result property="q2a1" column="q2a1" />
+        <result property="q2a2" column="q2a2" />
+        <result property="q2a3" column="q2a3" />
+        <result property="q3a1" column="q3a1" />
+        <result property="q3a2" column="q3a2" />
+        <result property="q3a3" column="q3a3" />
+    </resultMap>
+
+    <insert
+            id="saveFeedback"
+            parameterType="com.study.home_project.entity.Feedback"
+    >
+        insert into feedback_tb
+        value(0, #{answer1}, #{answer2}, #{answer3}, now(), now())
+    </insert>
+
+    <select id="findFeedback" resultMap="FeedbackResultMap">
+        select
+        feedback_id,
+        answer1,
+        answer2,
+        answer3,
+        create_date
+        from
+        feedback_tb
+    </select>
+
+    <select id="feedbackCount" resultMap="FeedbackResultMap">
+        select
+            count(case when answer1 = '1' then 1 end) as q1a1,
+            count(case when answer1 = '2' then 1 end) as q1a2,
+            count(case when answer1 = '3' then 1 end) as q1a3,
+            count(case when answer2 = '1' then 1 end) as q2a1,
+            count(case when answer2 = '2' then 1 end) as q2a2,
+            count(case when answer2 = '3' then 1 end) as q2a3,
+            count(case when answer3 = '1' then 1 end) as q3a1,
+            count(case when answer3 = '2' then 1 end) as q3a2,
+            count(case when answer3 = '3' then 1 end) as q3a3
+        from
+            feedback_tb
+    </select>
+</mapper>

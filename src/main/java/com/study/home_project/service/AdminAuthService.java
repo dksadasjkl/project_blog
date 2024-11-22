@@ -1,9 +1,9 @@
 package com.study.home_project.service;
 
-import com.study.home_project.dto.AdminSigninRequestDto;
-import com.study.home_project.dto.AdminSignupRequestDto;
-import com.study.home_project.dto.OAuth2MergeRequestDto;
-import com.study.home_project.dto.OAuth2SignupRequestDto;
+import com.study.home_project.dto.request.AdminSigninRequestDto;
+import com.study.home_project.dto.request.AdminSignupRequestDto;
+import com.study.home_project.dto.request.OAuth2MergeRequestDto;
+import com.study.home_project.dto.request.OAuth2SignupRequestDto;
 import com.study.home_project.entity.Admin;
 import com.study.home_project.entity.OAuth2;
 import com.study.home_project.jwt.JwtProvider;

@@ -1,4 +1,4 @@
-package com.study.home_project.dto;
+package com.study.home_project.dto.request;
 
 import com.study.home_project.entity.User;
 import lombok.Data;
