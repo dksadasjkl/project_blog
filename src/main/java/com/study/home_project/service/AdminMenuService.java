@@ -26,7 +26,6 @@ public class AdminMenuService {
 
     public List<AdminSearchMenuResponseDto> getMenus() {
         List<Menu> menus = menuMapper.getMenus();
-
         return menus.stream().map(Menu::toSearchMenuRespDto).collect(Collectors.toList());
     }
 
