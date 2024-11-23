@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.home_project.repository.SalesMapper">
+
+    <resultMap id="SalesResultMap" type="com.study.home_project.entity.Sales">
+        <result property="year" column="year" />
+        <result property="month" column="month" />
+        <result property="orderCount" column="order_count" />
+        <result property="totalSales" column="total_sales" />
+    </resultMap>
+    <resultMap id="MenuSalesResultMap" type="com.study.home_project.entity.MenuSales">
+        <id property="menuId" column="menu_id" />
+        <result property="orderYear" column="order_year" />
+        <result property="orderMonth" column="order_month" />
+        <result property="totalCount" column="total_count" />
+        <result property="sales" column="sales" />
+    </resultMap>
+
+    <select id="getSales" resultMap="SalesResultMap">
+        select
+        year,
+        month,
+        count(distinct order_list_id) as order_count,
+        sum(menu_price_total) as total_sales
+        from
+
+        (select
+        *,
+        date_format(order_time, "%Y") as year,
+        date_format(order_time, "%m") as month
+        from
+        m_sales) ms
+        group by
+        year,
+        month
+    </select>
+
+    <select id="findSales" resultMap="MenuSalesResultMap">
+        select
+        ott.menu_id,
+        ott.order_year,
+        ott.order_month,
+        sum(ott.menu_count) as total_count,
+        sum(ott.menu_count) * mt.menu_price as sales
+        from
+        (select
+        date_format(order_time, "%Y") as order_year,
+        date_format(order_time, "%m") as order_month,
+        menu_id,
+        menu_count
+        from
+        order_tb ot
+        left outer join order_list_tb olt on(olt.order_list_id = ot.order_list_id)) ott
+        left outer join menu_tb mt on(mt.menu_id = ott.menu_id)
+        group by
+        ott.order_year,
+        ott.order_month,
+        ott.menu_id
+    </select>
+
+</mapper>

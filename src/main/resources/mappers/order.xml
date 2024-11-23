@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.home_project.repository.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="com.study.home_project.entity.Order">
+        <result property="menuId" column="menu_id"/>
+        <association property="menu" javaType="com.study.home_project.entity.Menu">
+            <result property="menuName" column="menu_name" />
+            <result property="menuCal" column="menu_cal" />
+            <result property="menuPrice" column="menu_price" />
+            <result property="menuImgUrl" column="menu_img_url" />
+        </association>
+    </resultMap>
+
+    <insert id="addOrderList"
+            useGeneratedKeys="true"
+            keyProperty="orderListId"
+            parameterType="com.study.home_project.entity.OrderList">
+        insert into order_list_tb
+        values(
+        0,
+        now()
+        )
+    </insert>
+
+    <insert id="addOrders" parameterType="List" >
+        insert into
+        order_tb
+        values
+        <foreach collection="orders" item="order" separator="," >
+            (0, #{order.orderListId}, #{order.menuId}, #{order.menuCount})
+        </foreach>
+    </insert>
+
+    <select id="getRanking" resultMap="OrderResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_img_url,
+        mt.menu_cal,
+        sum(ot.menu_count) as total_count
+        from
+        order_tb ot
+        left outer join menu_tb mt on(ot.menu_id = mt.menu_id)
+        left outer join order_list_tb olt on(ot.order_list_id = olt.order_list_id)
+        group by
+        menu_id
+        order by
+        total_count desc
+        limit 0, 3;
+    </select>
+
+</mapper>

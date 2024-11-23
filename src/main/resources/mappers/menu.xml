@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.home_project.repository.MenuMapper">
+    <resultMap id="MenuResultMap" type="com.study.home_project.entity.Menu">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="categoryName" column="category_name" />
+        <result property="categoryNameKor" column="category_name_kor" />
+        <result property="menuPrice" column="menu_price"/>
+        <result property="menuCal" column="menu_cal"/>
+        <result property="menuImgUrl" column="menu_img_url"/>
+        <result property="categoryName" column="category_name" />
+        <result property="categoryNameKor" column="category_name_kor" />
+    </resultMap>
+
+    <resultMap id="CategoryResultMap" type="com.study.home_project.entity.Category">
+        <id property="categoryId" column="category_id" />
+        <result property="categoryName" column="category_name" />
+        <result property="categoryNameKor" column="category_name_kor" />
+    </resultMap>
+
+    <insert id="saveMenu" parameterType="com.study.home_project.entity.Menu">
+        insert into menu_tb
+        values(
+        0,
+        #{menuName},
+        #{categoryId},
+        #{menuPrice},
+        #{menuCal},
+        #{menuImgUrl}
+        )
+    </insert>
+
+    <select id="getMenus" resultMap="MenuResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
+        from
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
+    </select>
+
+    <delete id="deleteMenuByMenuId" parameterType="int">
+        delete
+        from
+        menu_tb
+        where
+        menu_id = #{menuId}
+    </delete>
+
+    <update id="updateMenuByMenuId" parameterType="com.study.home_project.entity.Menu">
+        update
+        menu_tb
+        set
+        menu_id = #{menuId},
+        menu_name = #{menuName},
+        category_id = #{categoryId},
+        menu_price = #{menuPrice},
+        menu_cal = #{menuCal},
+        menu_img_url = #{menuImgUrl}
+        where
+        menu_id = #{menuId}
+    </update>
+
+    <select id="getBurger" resultMap="MenuResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_id,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
+        from
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
+        where
+        mt.category_id = 2
+    </select>
+
+    <select id="getDrink" resultMap="MenuResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_id,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
+        from
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
+        where
+        mt.category_id = 3
+    </select>
+
+    <select id="getCategory" resultMap="CategoryResultMap">
+        select
+        *
+        from
+        category_tb
+        limit 1, 2
+    </select>
+
+</mapper>
