@@ -6,8 +6,6 @@ import com.study.home_project.dto.request.AdminUpdateMenuRequestDto;
 import com.study.home_project.dto.response.AdminSearchMenuResponseDto;
 import com.study.home_project.entity.Menu;
 import com.study.home_project.repository.MenuMapper;
-import com.study.home_project.repository.OrderMapper;
-import com.study.home_project.repository.SalesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +18,6 @@ public class AdminMenuService {
 
     @Autowired
     private MenuMapper menuMapper;
-
-    @Autowired
-    private OrderMapper orderMapper;
-
-    @Autowired
-    private SalesMapper salesMapper;
 
     @Transactional(rollbackFor = Exception.class)
     public int saveMenu(AdminRegisterMenuRequestDto adminRegisterMenuReqDto) {
