@@ -28,7 +28,7 @@ public class JwtAuthenticationFilter extends GenericFilter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         List<String> antMatchers = List.of(
-                "/auth", "/admin", "/order"
+                "/auth", "/admin", "/order", "/menus", "/point"
         );
 
         String url = request.getRequestURI();

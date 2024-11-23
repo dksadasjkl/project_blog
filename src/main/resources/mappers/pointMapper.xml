@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.home_project.repository.PointMapper">
+
+    <resultMap id="UserResultMap" type="com.study.home_project.entity.User">
+        <id property="userId" column="user_id" />
+        <result property="phoneNumber" column="phone_number" />
+    </resultMap>
+
+    <resultMap id="PointResultMap" type="com.study.home_project.entity.Point">
+        <id property="pointId" column="point_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="point" column="point"/>
+    </resultMap>
+
+    <select id="getPoint" resultType="integer">
+        select
+        sum(point) as point
+        from
+        user_tb ut
+        left outer join point_tb pt on(pt.user_id = ut.user_id)
+        where
+        ut.phone_number = #{phoneNumber}
+    </select>
+
+    <select id="findUser" resultMap="UserResultMap">
+        select
+        ut.user_id,
+        ut.phone_number
+        from
+        user_tb ut
+        where
+        ut.phone_number = #{phoneNumber}
+    </select>
+
+    <insert id="useOrSavePoint">
+        insert into
+        point_tb
+        values(0, #{userId}, #{point})
+    </insert>
+</mapper>

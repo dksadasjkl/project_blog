@@ -11,6 +11,7 @@
         <result property="orderCount" column="order_count" />
         <result property="totalSales" column="total_sales" />
     </resultMap>
+
     <resultMap id="MenuSalesResultMap" type="com.study.home_project.entity.MenuSales">
         <id property="menuId" column="menu_id" />
         <result property="orderYear" column="order_year" />
@@ -26,13 +27,12 @@
         count(distinct order_list_id) as order_count,
         sum(menu_price_total) as total_sales
         from
-
         (select
         *,
         date_format(order_time, "%Y") as year,
         date_format(order_time, "%m") as month
         from
-        sales_tb) ms
+        m_sales) ms
         group by
         year,
         month
