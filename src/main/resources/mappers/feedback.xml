@@ -25,19 +25,21 @@
             id="saveFeedback"
             parameterType="com.study.home_project.entity.Feedback"
     >
-        insert into feedback_tb
-        value(0, #{answer1}, #{answer2}, #{answer3}, now(), now())
+        insert into
+            feedback_tb
+        value
+            (0, #{answer1}, #{answer2}, #{answer3}, now(), now())
     </insert>
 
     <select id="findFeedback" resultMap="FeedbackResultMap">
         select
-        feedback_id,
-        answer1,
-        answer2,
-        answer3,
-        create_date
+            feedback_id,
+            answer1,
+            answer2,
+            answer3,
+            create_date
         from
-        feedback_tb
+            feedback_tb
     </select>
 
     <select id="feedbackCount" resultMap="FeedbackResultMap">

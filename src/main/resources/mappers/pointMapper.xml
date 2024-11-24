@@ -18,27 +18,28 @@
 
     <select id="getPoint" resultType="integer">
         select
-        sum(point) as point
+            sum(point) as point
         from
-        user_tb ut
-        left outer join point_tb pt on(pt.user_id = ut.user_id)
+            user_tb ut
+            left outer join point_tb pt on(pt.user_id = ut.user_id)
         where
-        ut.phone_number = #{phoneNumber}
+            ut.phone_number = #{phoneNumber}
     </select>
 
     <select id="findUser" resultMap="UserResultMap">
         select
-        ut.user_id,
-        ut.phone_number
+            ut.user_id,
+            ut.phone_number
         from
-        user_tb ut
+            user_tb ut
         where
-        ut.phone_number = #{phoneNumber}
+            ut.phone_number = #{phoneNumber}
     </select>
 
     <insert id="useOrSavePoint">
         insert into
-        point_tb
-        values(0, #{userId}, #{point})
+            point_tb
+        values
+            (0, #{userId}, #{point})
     </insert>
 </mapper>

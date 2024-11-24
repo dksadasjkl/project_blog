@@ -9,8 +9,10 @@
             keyProperty="userId"
             useGeneratedKeys="true"
     >
-        insert into user_tb
-        values(0, 2, #{phoneNumber}, now(), now())
+        insert into
+            user_tb
+        values
+            (0, 2, #{phoneNumber}, now(), now())
     </insert>
 
     <delete id="deleteUser"

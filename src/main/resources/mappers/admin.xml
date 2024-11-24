@@ -70,13 +70,17 @@
             keyProperty="adminId"
             useGeneratedKeys="true"
     >
-        insert into admin_tb
-        values(0, #{adminName}, #{adminPassword}, #{tradeName}, #{email}, 0, 0, "https://firebasestorage.googleapis.com/v0/b/gumeonggage-e7859.appspot.com/o/admin%2Fimg%2Flogo.jpg?alt=media&amp;token=9a43176d-8e67-4be4-add1-97270c626fcc", now(), now())
+        insert into
+            admin_tb
+        values
+            (0, #{adminName}, #{adminPassword}, #{tradeName}, #{email}, 0, 0, "https://firebasestorage.googleapis.com/v0/b/gumeonggage-e7859.appspot.com/o/admin%2Fimg%2Flogo.jpg?alt=media&amp;token=9a43176d-8e67-4be4-add1-97270c626fcc", now(), now())
     </insert>
 
     <insert id="saveRole" parameterType="integer">
-        insert into role_admin_register_tb
-        values(0, #{adminId}, 1, now(), now())
+        insert into
+            role_admin_register_tb
+        values
+            (0, #{adminId}, 1, now(), now())
     </insert>
 
     <select
@@ -134,8 +138,10 @@
     </select>
 
     <insert id="saveOAuth2" parameterType="com.study.home_project.entity.OAuth2">
-        insert into oauth2_tb
-        values(0, #{oAuth2Name}, #{adminId}, #{providerName}, now(), now())
+        insert into
+            oauth2_tb
+        values
+            (0, #{oAuth2Name}, #{adminId}, #{providerName}, now(), now())
     </insert>
 
     <select id="findAdminByOAuth2name" resultMap="AdminResultMap">
@@ -155,7 +161,7 @@
             oat.oauth2_name,
             oat.provider_name
         from
-        admin_tb at
+            admin_tb at
             left outer join role_admin_register_tb rart on(rart.admin_id = at.admin_id)
             left outer join role_tb rt on(rt.role_id = rart.role_id)
             left outer join oauth2_tb oat on(oat.admin_id = at.admin_id)

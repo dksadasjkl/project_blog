@@ -22,20 +22,20 @@
 
     <select id="getSales" resultMap="SalesResultMap">
         select
-        year,
-        month,
-        count(distinct order_list_id) as order_count,
-        sum(menu_price_total) as total_sales
+            year,
+            month,
+            count(distinct order_list_id) as order_count,
+            sum(menu_price_total) as total_sales
         from
-        (select
-        *,
-        date_format(order_time, "%Y") as year,
-        date_format(order_time, "%m") as month
+            (select
+            *,
+            date_format(order_time, "%Y") as year,
+            date_format(order_time, "%m") as month
         from
-        m_sales) ms
+            m_sales) ms
         group by
-        year,
-        month
+            year,
+            month
     </select>
 
     <select id="findSales" resultMap="MenuSalesResultMap">

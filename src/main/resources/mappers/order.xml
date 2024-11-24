@@ -19,16 +19,15 @@
             useGeneratedKeys="true"
             keyProperty="orderListId"
             parameterType="com.study.home_project.entity.OrderList">
-        insert into order_list_tb
-        values(
-        0,
-        now()
-        )
+        insert into
+            order_list_tb
+        values
+            (0, now())
     </insert>
 
     <insert id="addOrders" parameterType="List" >
         insert into
-        order_tb
+            order_tb
         values
         <foreach collection="orders" item="order" separator="," >
             (0, #{order.orderListId}, #{order.menuId}, #{order.menuCount})
@@ -37,21 +36,21 @@
 
     <select id="getRanking" resultMap="OrderResultMap">
         select
-        mt.menu_id,
-        mt.menu_name,
-        mt.menu_price,
-        mt.menu_img_url,
-        mt.menu_cal,
-        sum(ot.menu_count) as total_count
+            mt.menu_id,
+            mt.menu_name,
+            mt.menu_price,
+            mt.menu_img_url,
+            mt.menu_cal,
+            sum(ot.menu_count) as total_count
         from
-        order_tb ot
-        left outer join menu_tb mt on(ot.menu_id = mt.menu_id)
-        left outer join order_list_tb olt on(ot.order_list_id = olt.order_list_id)
+            order_tb ot
+            left outer join menu_tb mt on(ot.menu_id = mt.menu_id)
+            left outer join order_list_tb olt on(ot.order_list_id = olt.order_list_id)
         group by
-        menu_id
+            menu_id
         order by
-        total_count desc
-        limit 0, 3;
+            total_count desc
+            limit 0, 3;
     </select>
 
 </mapper>
