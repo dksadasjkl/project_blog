@@ -22,9 +22,11 @@ public class AdminAuthController {
     @Autowired
     private AdminAuthService adminAuthService;
 
+
     @ValidAspect
     @PostMapping("/signup")
     public ResponseEntity<?> adminSignup(@Valid @RequestBody AdminSignupRequestDto adminSignupRequestDto, BindingResult bindingResult) {
+        System.out.println(adminSignupRequestDto);
         adminAuthService.adminSignup(adminSignupRequestDto);
         return ResponseEntity.created(null).body(true);
     }

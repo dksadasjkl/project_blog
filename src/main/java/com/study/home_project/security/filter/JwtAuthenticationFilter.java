@@ -28,37 +28,42 @@ public class JwtAuthenticationFilter extends GenericFilter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         List<String> antMatchers = List.of(
-                "/auth", "/admin", "/order", "/menus", "/point"
+                "/server",
+                "/admin/auth",
+                "/oauth2",
+                "/error"
         );
 
-        String url = request.getRequestURI();
+        String uri = request.getRequestURI();
         request.setAttribute("isPermitAll", false);
-
         for(String antMatcher : antMatchers) {
-            if (url.startsWith(antMatcher)) {
+            if(uri.startsWith(antMatcher)) {
                 request.setAttribute("isPermitAll", true);
             }
         }
-        Boolean isPermitAll = (Boolean) request.getAttribute("isPermitAll");
 
-        if(!isPermitAll) {
+        boolean isPermitAll = (Boolean) request.getAttribute("isPermitAll");
+        if (!isPermitAll) {
             String accessToken = request.getHeader("Authorization");
-            String removeBearerToken = jwtProvider.removeBearer(accessToken);
+            String removedBearerToken = jwtProvider.removeBearer(accessToken);
             Claims claims = null;
             try {
-                claims = jwtProvider.getClaims(removeBearerToken);
+                claims = jwtProvider.getClaims(removedBearerToken);
             } catch (Exception e) {
-                response.sendError(HttpStatus.UNAUTHORIZED.value());
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);//401 에러 -인증실패
                 return;
             }
+
             Authentication authentication = jwtProvider.getAuthentication(claims);
 
             if(authentication == null) {
-                response.sendError(HttpStatus.UNAUTHORIZED.value());
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);//401 에러 -인증실패
                 return;
             }
+
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+
         filterChain.doFilter(request, response);
     }
 }
