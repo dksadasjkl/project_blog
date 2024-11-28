@@ -18,6 +18,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody AuthSignupRequestDto authSignupRequestDto, BindingResult bindingResult) {
+        System.out.println("회원가입 요청" + authSignupRequestDto);
         authService.signup(authSignupRequestDto);
         return ResponseEntity.created(null).body(true);
     }

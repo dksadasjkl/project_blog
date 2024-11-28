@@ -31,7 +31,8 @@ public class JwtAuthenticationFilter extends GenericFilter {
                 "/server",
                 "/admin/auth",
                 "/oauth2",
-                "/error"
+                "/error",
+                "/auth"
         );
 
         String uri = request.getRequestURI();
