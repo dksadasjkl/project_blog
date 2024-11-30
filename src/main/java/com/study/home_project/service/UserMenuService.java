@@ -28,10 +28,15 @@ public class UserMenuService {
 
             return orders;
         } else if (categoryId == 3) {
-            return menuMapper.getBurger();
+            return menuMapper.getHotCoffee();
+        } else if (categoryId == 4) {
+            return menuMapper.getIceCoffee();
+        } else if (categoryId == 5) {
+            return menuMapper.getSmoothie();
+        } else if (categoryId == 6) {
+            return menuMapper.getAde();
         }
-
-        return menuMapper.getDrink();
+        return menuMapper.getTea();
     }
 
     public List<Category> getCategory() {

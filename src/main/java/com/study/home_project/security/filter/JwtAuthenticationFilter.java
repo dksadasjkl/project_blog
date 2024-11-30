@@ -21,18 +21,23 @@ public class JwtAuthenticationFilter extends GenericFilter {
     @Autowired
     private JwtProvider jwtProvider;
 
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
+
         List<String> antMatchers = List.of(
-                "/server",
-                "/admin/auth",
-                "/oauth2",
+                "/server/*",
+                "/admin/**",
                 "/error",
-                "/auth"
+                "/oauth2/**",
+                "/auth/*",
+                "/admin/auth/signup",
+                "/admin/auth/signin",
+                "/admin/auth/oauth2/signup",
+                "/admin/auth/oauth2/signin",
+                "/admin/auth/oauth2/merge"
         );
 
         String uri = request.getRequestURI();
@@ -43,25 +48,24 @@ public class JwtAuthenticationFilter extends GenericFilter {
             }
         }
 
-        boolean isPermitAll = (Boolean) request.getAttribute("isPermitAll");
-        if (!isPermitAll) {
+        Boolean isPermitAll = (Boolean) request.getAttribute("isPermitAll");
+
+        if(!isPermitAll) {
             String accessToken = request.getHeader("Authorization");
-            String removedBearerToken = jwtProvider.removeBearer(accessToken);
+            String removeBearerToken = jwtProvider.removeBearer(accessToken);
             Claims claims = null;
             try {
-                claims = jwtProvider.getClaims(removedBearerToken);
+                claims = jwtProvider.getClaims(removeBearerToken);
             } catch (Exception e) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);//401 에러 -인증실패
+                response.sendError(HttpStatus.UNAUTHORIZED.value());
                 return;
             }
-
             Authentication authentication = jwtProvider.getAuthentication(claims);
 
             if(authentication == null) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);//401 에러 -인증실패
+                response.sendError(HttpStatus.UNAUTHORIZED.value());
                 return;
             }
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 

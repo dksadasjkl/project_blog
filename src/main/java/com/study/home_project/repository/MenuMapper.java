@@ -12,8 +12,11 @@ public interface MenuMapper {
     public List<Menu> getMenus();
     public int deleteMenuByMenuId(int menuId);
     public int updateMenuByMenuId(Menu menu);
-    public List<Menu> getBurger();
-    public List<Menu> getDrink();
+    public List<Menu> getHotCoffee();
+    public List<Menu> getIceCoffee();
+    public List<Menu> getSmoothie();
+    public List<Menu> getAde();
+    public List<Menu> getTea();
     public List<Category> getCategory();
 
 }

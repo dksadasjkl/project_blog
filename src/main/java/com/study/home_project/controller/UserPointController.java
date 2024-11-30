@@ -15,7 +15,6 @@ public class UserPointController {
 
     @PostMapping("/point")
     public ResponseEntity<?> useOrSavePoint(@RequestBody UserUseOrSavePointRequestDto userUseOrSavePointReqDto) {
-        System.out.println("포인트 요청" + userUseOrSavePointReqDto);
         userPointService.useOrSavePointByNumber(userUseOrSavePointReqDto);
         return ResponseEntity.created(null).body(true);
     }

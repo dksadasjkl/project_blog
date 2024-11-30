@@ -72,7 +72,7 @@
             menu_id = #{menuId}
     </update>
 
-    <select id="getBurger" resultMap="MenuResultMap">
+    <select id="getHotCoffee" resultMap="MenuResultMap">
         select
             mt.menu_id,
             mt.menu_name,
@@ -86,25 +86,79 @@
             menu_tb mt
             left outer join category_tb ct on(ct.category_id = mt.category_id)
         where
-            mt.category_id = 2
+            mt.category_id = 1
     </select>
 
-    <select id="getDrink" resultMap="MenuResultMap">
+    <select id="getIceCoffee" resultMap="MenuResultMap">
         select
-            mt.menu_id,
-            mt.menu_name,
-            mt.menu_price,
-            mt.menu_cal,
-            ct.category_id,
-            ct.category_name,
-            ct.category_name_kor,
-            mt.menu_img_url
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_id,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
         from
-            menu_tb mt
-            left outer join category_tb ct on(ct.category_id = mt.category_id)
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
         where
-            mt.category_id = 3
+        mt.category_id = 2
     </select>
+
+    <select id="getSmoothie" resultMap="MenuResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_id,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
+        from
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
+        where
+        mt.category_id = 3
+
+    </select>
+
+    <select id="getAde" resultMap="MenuResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_id,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
+        from
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
+        where
+        mt.category_id = 4
+
+    </select>
+
+    <select id="getTea" resultMap="MenuResultMap">
+        select
+        mt.menu_id,
+        mt.menu_name,
+        mt.menu_price,
+        mt.menu_cal,
+        ct.category_id,
+        ct.category_name,
+        ct.category_name_kor,
+        mt.menu_img_url
+        from
+        menu_tb mt
+        left outer join category_tb ct on(ct.category_id = mt.category_id)
+        where
+        mt.category_id = 5
+    </select>
+
 
     <select id="getCategory" resultMap="CategoryResultMap">
         select

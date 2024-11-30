@@ -17,32 +17,32 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/admin/auth")
+@RequestMapping("/admin")
 public class AdminAuthController {
     @Autowired
     private AdminAuthService adminAuthService;
 
 
     @ValidAspect
-    @PostMapping("/signup")
+    @PostMapping("/auth/signup")
     public ResponseEntity<?> adminSignup(@Valid @RequestBody AdminSignupRequestDto adminSignupRequestDto, BindingResult bindingResult) {
         System.out.println(adminSignupRequestDto);
         adminAuthService.adminSignup(adminSignupRequestDto);
         return ResponseEntity.created(null).body(true);
     }
-    @PostMapping("/signin")
+    @PostMapping("/auth/signin")
     public ResponseEntity<?> adminSignin(@RequestBody AdminSigninRequestDto adminSigninRequestDto) {
         return ResponseEntity.ok(adminAuthService.adminSignin(adminSigninRequestDto));
     }
 
     @ValidAspect
-    @PostMapping("/oauth2/signup")
+    @PostMapping("/auth/oauth2/signup")
     public ResponseEntity<?> oAuth2Signup(@Valid @RequestBody OAuth2SignupRequestDto OAuth2SignupRequestDto, BindingResult bindingResult) {
         adminAuthService.oAuth2Signup(OAuth2SignupRequestDto);
         return ResponseEntity.created(null).body(true);
     }
 
-    @PostMapping("/oauth2/merge")
+    @PostMapping("/auth/oauth2/merge")
     public ResponseEntity<?> oAuth2Merge(@RequestBody OAuth2MergeRequestDto oAuth2MergeRequestDto) {
         adminAuthService.oAuth2Merge(oAuth2MergeRequestDto);
         return ResponseEntity.ok(true);

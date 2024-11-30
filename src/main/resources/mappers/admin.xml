@@ -124,6 +124,7 @@
     <select id="getUserAuth" resultMap="UserAuthResultMap">
         select
             ut.user_id,
+            ut.role_id,
             rt.role_name_kor,
             ut.phone_number,
             sum(point) as total_point,

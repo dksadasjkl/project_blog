@@ -43,11 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/server/**",
                         "/auth/**",
                         "/admin/**",
+                        "/admin/auth/**",
+                        "/oauth2/**",
                         "/menus/**",
                         "/menu/**",
                         "/point",
                         "/order",
-                        "/feedback/add"
+                        "/feedback/add",
+                        "/admin/account/**"
                 )
                 .permitAll()
                 .antMatchers("/admin/menu/**", "/admin/menus/**", "/admin/order/**")// 관리자 접근만 허용
