@@ -32,12 +32,14 @@ public class JwtAuthenticationFilter extends GenericFilter {
                 "/admin/**",
                 "/error",
                 "/oauth2/**",
-                "/auth/*",
+                "/auth/**",
+                "/auth/signup",
                 "/admin/auth/signup",
                 "/admin/auth/signin",
                 "/admin/auth/oauth2/signup",
                 "/admin/auth/oauth2/signin",
-                "/admin/auth/oauth2/merge"
+                "/admin/auth/oauth2/merge",
+                "/menus"
         );
 
         String uri = request.getRequestURI();

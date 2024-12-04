@@ -15,8 +15,8 @@ public class UserPointController {
 
     @PostMapping("/point")
     public ResponseEntity<?> useOrSavePoint(@RequestBody UserUseOrSavePointRequestDto userUseOrSavePointReqDto) {
-        userPointService.useOrSavePointByNumber(userUseOrSavePointReqDto);
-        return ResponseEntity.created(null).body(true);
+
+        return ResponseEntity.ok().body(userPointService.useOrSavePointByNumber(userUseOrSavePointReqDto));
     }
     @GetMapping("/point")
     public ResponseEntity<?> getPoint(@RequestParam String phoneNumber) {
