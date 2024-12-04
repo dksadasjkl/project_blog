@@ -5,7 +5,6 @@ spring:
       local: local, common, secret
       blue_server: blue, common, secret
       green_server: green, common, secret
-#블루 그린 그룹 추가
 
 server:
   env: blue
@@ -31,8 +30,7 @@ server:
   name: local_server
 
 ---
-#로컬 호스트 대신 주소변경 해야함
-#로컬 블루 그린 나누고 deploy-address 탄력적 ip로 변경
+
 spring:
   config:
     activate:
