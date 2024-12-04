@@ -384,7 +384,7 @@
 <br/>
 
 ## 📆 프로젝트 일정
-![image](https://github.com/user-attachments/assets/7f6f2d6f-db0a-422f-9b1a-8d94842de4ad)
+(https://github.com/user-attachments/assets/cf60f9ab-a7ab-41f6-898f-4c0cd744c755)
 <p align="right" dir="auto">
 <a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
