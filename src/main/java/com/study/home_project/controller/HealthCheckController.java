@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
-//배포 서버 상태 체크
+//배포 서버 상태
 @RestController
 public class HealthCheckController {
     @Value("${server.env}")
