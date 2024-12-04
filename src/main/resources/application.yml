@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: blue
+    active: blue_server
     group:
       local: local, common, secret
       blue_server: blue, common, secret
@@ -47,7 +47,7 @@ spring:
 server:
   port: 8080
   deploy-address: 43.202.167.18
-  name: blue
+  name: blue_server
 
 ---
 
@@ -67,7 +67,7 @@ spring:
 server:
   port: 9090
   deploy-address: 43.202.167.18
-  name: green
+  name: green_server
 
 ---
 
