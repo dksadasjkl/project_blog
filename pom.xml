@@ -12,7 +12,7 @@
 	<artifactId>home_project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>home_project</name>
-	<description>홈 프로젝트</description>
+	<description>Home Project</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -107,11 +107,6 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.2.0</version>
 			</plugin>
 		</plugins>
 	</build>
