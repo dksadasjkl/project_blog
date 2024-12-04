@@ -23,6 +23,8 @@ public class HealthCheckController {
     @Value("${server.port}")
     private String port;
 
+
+    // bule or green
     @GetMapping("/server/hc")
     public ResponseEntity<?> healthCheck() {
         return ResponseEntity.ok(Map.of(
@@ -31,6 +33,7 @@ public class HealthCheckController {
                 "port", port
         ));
     }
+
 
     @GetMapping("/server/env")
     public ResponseEntity<?> getEnv() {
