@@ -72,7 +72,7 @@
 <br/>
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 
@@ -153,7 +153,7 @@
 -   DB 설계
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 <br/>
@@ -167,7 +167,7 @@
 -   <a href="https://github.com/dksadasjkl/project_kiosk_back/commits/main/"> 📋 GitHub Commits(Back) </a>
     -  커밋 리스트
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
     
 <br/>
@@ -281,7 +281,7 @@
 </div>
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 <br/>
@@ -386,7 +386,7 @@
 ## 📆 프로젝트 일정
 ![image](https://github.com/user-attachments/assets/7f6f2d6f-db0a-422f-9b1a-8d94842de4ad)
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 <br/>
@@ -403,7 +403,7 @@ https://www.notion.so/1518925d189a80f3a0ecf6a694f780d0?v=1518925d189a81b48af5000
 ![ERD 다이어그램](https://github.com/user-attachments/assets/509bba6e-dabb-4dbf-99af-662442f57ee4)
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 <br/>
@@ -420,7 +420,7 @@ https://www.notion.so/1518925d189a80f3a0ecf6a694f780d0?v=1518925d189a81b48af5000
 ![관리자 메뉴 관리도](https://github.com/user-attachments/assets/85d7c1c4-de00-4473-a9ad-0d8889eed9ea)
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 <br/>
@@ -545,7 +545,7 @@ https://www.notion.so/1518925d189a80f3a0ecf6a694f780d0?v=1518925d189a81b48af5000
 </div>
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
 </p>
 
 </br>
