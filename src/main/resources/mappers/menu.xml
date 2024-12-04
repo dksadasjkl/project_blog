@@ -165,7 +165,6 @@
             *
         from
             category_tb
-            limit 1, 2
     </select>
 
 </mapper>

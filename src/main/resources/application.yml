@@ -3,6 +3,12 @@ spring:
     active: local
     group:
       local: local, common, secret
+      blue_server: blue, common, secret
+      green_server: green, common, secret
+#블루 그린 그룹 추가
+
+server:
+  env: blue
 
 ---
 
@@ -22,7 +28,48 @@ spring:
 server:
   port: 8080
   deploy-address: localhost
-  name: local
+  name: local_server
+
+---
+#로컬 호스트 대신 주소변경 해야함
+#로컬 블루 그린 나누고 deploy-address 탄력적 ip로 변경
+spring:
+  config:
+    activate:
+      on-profile: blue
+  security:
+    oauth2:
+      client:
+        registration:
+          naver:
+            redirectUri: http://43.202.167.18/login/oauth2/code/naver
+          kakao:
+            redirectUri: http://43.202.167.18/login/oauth2/code/kakao
+
+server:
+  port: 8080
+  deploy-address: 43.202.167.18
+  name: blue_server
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: green
+  security:
+    oauth2:
+      client:
+        registration:
+          naver:
+            redirectUri: http://43.202.167.18/login/oauth2/code/naver
+          kakao:
+            redirectUri: http://43.202.167.18/login/oauth2/code/kakao
+
+server:
+  port: 9090
+  deploy-address: 43.202.167.18
+  name: green_server
 
 ---
 
