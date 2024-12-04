@@ -108,7 +108,7 @@
 				<configuration>
 					<propertiesEncoding>UTF-8</propertiesEncoding>
 					<nonFilteredFileExtensions>
-						<nonFilteredFileExtension>mwb</nonFilteredFileExtension>
+						<nonFilteredFileExtension>yml</nonFilteredFileExtension>
 					</nonFilteredFileExtensions>
 				</configuration>
 			</plugin>
