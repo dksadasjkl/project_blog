@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: blue_server
+    active: local
     group:
       local: local, common, secret
       blue_server: blue, common, secret
