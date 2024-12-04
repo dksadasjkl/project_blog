@@ -8,6 +8,8 @@
 >
 > ## [✔ 컨벤션](#-컨벤션-1)
 >
+> ## ⚙️[배포](#-배포-1)
+> 
 > ## [🛠 개발 도구](#-개발-도구-1)
 >
 > ## [📆 프로젝트 일정](#-프로젝트-일정-1)
@@ -72,7 +74,7 @@
 <br/>
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
 
@@ -153,7 +155,7 @@
 -   DB 설계
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
 <br/>
@@ -167,7 +169,7 @@
 -   <a href="https://github.com/dksadasjkl/project_kiosk_back/commits/main/"> 📋 GitHub Commits(Back) </a>
     -  커밋 리스트
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
     
 <br/>
@@ -281,9 +283,19 @@
 </div>
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
+<br/>
+<br/>
+
+## ⚙️ 배포
+![무중단 배포](https://github.com/compositivePetProject/compositive_pet_project_front/assets/118997608/9412eee1-ae75-43f1-b84c-1b6d44948e5b)
+<p>
+확장성 및 유지보수성을 고려하여 배포에 대한 고민을 해보았습니다. 대부분의 팀 프로젝트의 경우 팀원들끼리 로컬 환경에서 개발 후 배포를 하고 프로젝트가 종료되는게 일반적입니다. 하지만, 배포 후 예상치 못한 버그 수정이나 기능 추가 등의 상황까지 고려한다면 배포된 상태에서 해당 서버를 중지시키고 작업을 하여 재배포하게 됩니다. 그 때 접속되어 있는 사용자의 경우는 해당 서비스를 이용하지 못하는 불편함을 겪게 됩니다. 즉, 중단된 상태를 나타내고 저희 조에서는 무중단 배포의 개념을 적용시켜 보았습니다. 서버를 Blue(8080 Port), Green(9090 Port) 각각의 백엔드 서버를 구동하면서 첫 배포시 사용자에게 Blue 서버를 구동하여 배포합니다. 이후 서비스의 추가적인 개발 작업이 필요할 경우 남아있는 Green 서버가 존재하기 때문에 여러 테스트 과정을 진행하고 Push를 하게되면 Github Action 에 의해 자동 CI/CD 작업을 Dokcer 파일에 입력된 되로 업데이트 되며, NGINX 에서 기존 사용자들에게 제공중인 Blue 서버에서 GREEN 서버로 이동하게 만들어 줍니다. 이렇게 되면 Blue -> Green 서버의 전환이 계속해서 반복되게 되는 구조로 사용자의 입장에서 서비스를 이용하는데 문제가 발생하지 않게 됩니다.
+</p>
+<p align="right" dir="auto">
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 <br/>
 <br/>
 
@@ -385,9 +397,8 @@
 
 ## 📆 프로젝트 일정
 ![image](https://github.com/user-attachments/assets/07ccb212-0929-4437-9ad9-5fb996c644bf)
-
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
 <br/>
@@ -404,7 +415,7 @@ https://www.notion.so/1518925d189a80f3a0ecf6a694f780d0?v=1518925d189a81b48af5000
 ![ERD 다이어그램](https://github.com/user-attachments/assets/509bba6e-dabb-4dbf-99af-662442f57ee4)
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
 <br/>
@@ -421,7 +432,7 @@ https://www.notion.so/1518925d189a80f3a0ecf6a694f780d0?v=1518925d189a81b48af5000
 ![관리자 메뉴 관리도](https://github.com/user-attachments/assets/85d7c1c4-de00-4473-a9ad-0d8889eed9ea)
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
 <br/>
@@ -546,7 +557,7 @@ https://www.notion.so/1518925d189a80f3a0ecf6a694f780d0?v=1518925d189a81b48af5000
 </div>
 
 <p align="right" dir="auto">
-<a href="https://github.com/dksadasjkl/project_kiosk_back">TOP 🔼</a>
+<a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
 
 </br>
