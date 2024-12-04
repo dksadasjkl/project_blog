@@ -28,7 +28,7 @@ public class JwtAuthenticationFilter extends GenericFilter {
 
 
         List<String> antMatchers = List.of(
-                "/server/*",
+                "/server",
                 "/admin/**",
                 "/error",
                 "/oauth2/**",
