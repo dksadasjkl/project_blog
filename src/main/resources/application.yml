@@ -40,9 +40,9 @@ spring:
       client:
         registration:
           naver:
-            redirectUri: http://43.202.167.18/login/oauth2/code/naver
+            redirectUri: http://43.202.167.18:8080/login/oauth2/code/naver
           kakao:
-            redirectUri: http://43.202.167.18/login/oauth2/code/kakao
+            redirectUri: http://43.202.167.18:8080/login/oauth2/code/kakao
 
 server:
   port: 8080
@@ -60,9 +60,9 @@ spring:
       client:
         registration:
           naver:
-            redirectUri: http://43.202.167.18/login/oauth2/code/naver
+            redirectUri: http://43.202.167.18:8080/login/oauth2/code/naver
           kakao:
-            redirectUri: http://43.202.167.18/login/oauth2/code/kakao
+            redirectUri: http://43.202.167.18:8080/login/oauth2/code/kakao
 
 server:
   port: 9090
