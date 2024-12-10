@@ -37,7 +37,7 @@
 
 ### 📆 제작 기간
 
--   2024.11.06 ~ 2024.12.02
+-   2024.10.27 ~ 2024.12.07
 
 ### 🔎 주요 기능
 
@@ -397,7 +397,7 @@
 <br/>
 
 ## 📆 프로젝트 일정
-![image](https://github.com/user-attachments/assets/07ccb212-0929-4437-9ad9-5fb996c644bf)
+![image](https://github.com/user-attachments/assets/ca3142d1-18a1-4f8e-bee8-82714e7d5013)
 <p align="right" dir="auto">
 <a href="https://github.com/dksadasjkl/project_kiosk_front">TOP 🔼</a>
 </p>
